@@ -17,97 +17,129 @@
     </ul>
   </nav>  
 
-  <header>
-    <h1>Resume</h1>
-    <p><a href="mailto:gdespaigne@yahoo.com">gdespaigne@yahoo.com</a></p>
-    <p>Multidisciplinary professional with a background in Quality Control Microbiology, Data Science, and Visual Storytelling. Experienced in regulated environments, process improvement, and data-driven decision-making.</p>
-  </header>
+  <main class="resume">
+    <!-- Header -->
+    <header class="resume__header">
+      <h1>Gabrielle Despaigne</h1>
+      <p class="resume__meta">
+        San Diego, CA ·
+        <a href="mailto:gdespaigne@yahoo.com">gdespaigne@yahoo.com</a> ·
+        <a href="https://gdespaigne.github.io/portfolio/">Portfolio</a> ·
+        <a href="https://github.com/gdespaigne">GitHub</a>
+      </p>
+      <p>Multidisciplinary professional with a background in Quality Control Microbiology, Data Science, and Visual Storytelling. Experienced in regulated environments, process improvement, and data-driven decision-making.</p>
+    </header>
 
-  <section>
-    <h2>Education</h2>
-    <p><strong>University of California San Diego</strong> — M.S. Data Science (in progress), expected Spring 2026</p>
-    <p><strong>University of North Carolina at Wilmington</strong> — B.F.A. Film Studies; Minor in Business Entrepreneurship &amp; Innovation (2018)</p>
-  </section>
+    <!-- Grid Layout -->
+    <section class="resume__grid">
+      <!-- Sidebar -->
+      <aside class="resume__sidebar">
+        <h2>Skills</h2>
 
-  <section>
-    <h2>Experience</h2>
+        <h3>Quality, Compliance &amp; Operations</h3>
+        <ul>
+          <li>GMP, GDP, ISO 9001, Annex 1, SOP development, CAPA, RCA (5 Whys), aseptic technique, QC microbiology testing</li>
+          <li>Veeva Vault, ComplianceWire, SAP, LIMS, Lean/Six Sigma, 5S/Kaizen</li>
+        </ul>
 
-    <article>
-      <h3>Quality Control Analyst I — Microbiology</h3>
-      <p><strong>Excellos Inc</strong>, San Diego, CA &nbsp;•&nbsp; Mar 2025 – Present</p>
-      <ul>
-        <li>Conduct sterility testing using BacT/ALERT 3D; ensure accuracy and compliance with GMP and internal SOPs.</li>
-        <li>Maintain audit-ready documentation and batch records for routine and release testing.</li>
-        <li>Review and verify sample data, generate deviations, and collaborate with QA to close CAPAs efficiently.</li>
-        <li>Lead root-cause analysis initiatives using 5 Whys and trend reporting to identify recurring issues.</li>
-        <li>Analyze environmental monitoring and sterility data to produce weekly and quarterly trending reports.</li>
-        <li>Perform potency assays such as Ella immunoassays to evaluate sample strength and consistency.</li>
-        <li>Established an in-house microbiology laboratory for enumeration testing and workflow efficiency.</li>
-      </ul>
-    </article>
+        <h3>Data &amp; Analytics</h3>
+        <ul>
+          <li>Python, SQL, pandas, Spark, regression &amp; classification, data cleaning, exploratory analysis</li>
+          <li>Visualization: HTML/CSS, JavaScript, D3, Plotly; storytelling &amp; dashboard design</li>
+        </ul>
 
-    <article>
-      <h3>QC Environmental Monitoring Associate II</h3>
-      <p><strong>Societal CDMO</strong>, San Diego, CA &nbsp;•&nbsp; Jan 2023 – Mar 2025</p>
-      <ul>
-        <li>Executed routine EM across ISO 5–8 cleanrooms; performed bioburden, TOC, and conductivity testing.</li>
-        <li>Developed data-driven quarterly EM trending reports and contributed to method validation activities.</li>
-        <li>Revised SOPs and testing protocols to align with Annex 1 and cGMP standards.</li>
-        <li>Investigated out-of-specification events and proposed workflow improvements to management.</li>
-        <li>Used Veeva and ComplianceWire to manage training and documentation updates.</li>
-      </ul>
-    </article>
+        <h3>Tools</h3>
+        <ul>
+          <li>Excel, Git/GitHub, Jupyter, BacT/ALERT 3D, Ella Immunoassay</li>
+        </ul>
 
-    <article>
-      <h3>Environmental Monitor (Contractor)</h3>
-      <p><strong>Genentech</strong>, Oceanside, CA &nbsp;•&nbsp; Sep 2021 – Sep 2022</p>
-      <ul>
-        <li>Performed viable and non-viable particulate sampling in ISO-classified manufacturing areas.</li>
-        <li>Logged environmental data into LIMS and generated weekly trend analyses.</li>
-        <li>Trained personnel in aseptic techniques and supported deviation investigations.</li>
-      </ul>
-    </article>
+        <h2>Education</h2>
+        <p><strong>University of California San Diego</strong> — M.S. Data Science (in progress), expected Spring 2026</p>
+        <p><strong>University of North Carolina at Wilmington</strong> — B.F.A. Film Studies; Minor in Business Entrepreneurship &amp; Innovation (2018)</p>
+      </aside>
 
-    <article>
-      <h3>Data Intern</h3>
-      <p><strong>Lapetus Solutions Inc</strong>, Wilmington, NC &nbsp;•&nbsp; Sep 2013 – Sep 2019</p>
-      <ul>
-        <li>Collaborated with data scientists on collection, cleaning, and standardization of large datasets.</li>
-        <li>Used Python and SQL to analyze structured data and produce visual summaries for research reports.</li>
-        <li>Developed documentation to support facial recognition algorithm testing and deployment.</li>
-      </ul>
-    </article>
-  </section>
+      <!-- Main column -->
+      <section class="resume__main">
+        <h2>Experience</h2>
 
-  <section>
-    <h2>Skills</h2>
+        <article class="job">
+          <header class="job__head">
+            <h3 class="job__role">Quality Control Analyst I — Microbiology</h3>
+            <div class="job__meta">
+              <span class="job__org">Excellos Inc</span>
+              <span class="job__loc">San Diego, CA</span>
+              <time class="job__dates">Mar 2025 – Present</time>
+            </div>
+          </header>
+          <ul class="job__bullets">
+            <li>Conduct sterility testing using BacT/ALERT 3D; ensure accuracy and compliance with GMP and internal SOPs.</li>
+            <li>Maintain audit-ready documentation and batch records for routine and release testing.</li>
+            <li>Review and verify sample data, generate deviations, and collaborate with QA to close CAPAs efficiently.</li>
+            <li>Lead root-cause analysis initiatives using 5 Whys and trend reporting to identify recurring issues.</li>
+            <li>Analyze environmental monitoring and sterility data to produce weekly and quarterly trending reports.</li>
+            <li>Perform potency assays such as Ella immunoassays to evaluate sample strength and consistency.</li>
+            <li>Established an in-house microbiology laboratory for enumeration testing and workflow efficiency.</li>
+          </ul>
+        </article>
 
-    <h3>Quality, Compliance &amp; Operations</h3>
-    <ul>
-      <li>GMP, GDP, ISO 9001, Annex 1, SOP development, CAPA, RCA (5 Whys), aseptic technique, QC microbiology testing</li>
-      <li>Veeva Vault, ComplianceWire, SAP, LIMS, Lean/Six Sigma, 5S/Kaizen</li>
-    </ul>
+        <article class="job">
+          <header class="job__head">
+            <h3 class="job__role">QC Environmental Monitoring Associate II</h3>
+            <div class="job__meta">
+              <span class="job__org">Societal CDMO</span>
+              <span class="job__loc">San Diego, CA</span>
+              <time class="job__dates">Jan 2023 – Mar 2025</time>
+            </div>
+          </header>
+          <ul class="job__bullets">
+            <li>Executed routine EM across ISO 5–8 cleanrooms; performed bioburden, TOC, and conductivity testing.</li>
+            <li>Developed data-driven quarterly EM trending reports and contributed to method validation activities.</li>
+            <li>Revised SOPs and testing protocols to align with Annex 1 and cGMP standards.</li>
+            <li>Investigated out-of-specification events and proposed workflow improvements to management.</li>
+            <li>Used Veeva and ComplianceWire to manage training and documentation updates.</li>
+          </ul>
+        </article>
 
-    <h3>Data &amp; Analytics</h3>
-    <ul>
-      <li>Python, SQL, pandas, Spark, regression and classification, data cleaning, exploratory analysis</li>
-      <li>Visualization: HTML/CSS, JavaScript, D3, Plotly; storytelling and dashboard design</li>
-    </ul>
+        <article class="job">
+          <header class="job__head">
+            <h3 class="job__role">Environmental Monitor (Contractor)</h3>
+            <div class="job__meta">
+              <span class="job__org">Genentech</span>
+              <span class="job__loc">Oceanside, CA</span>
+              <time class="job__dates">Sep 2021 – Sep 2022</time>
+            </div>
+          </header>
+          <ul class="job__bullets">
+            <li>Performed viable and non-viable particulate sampling in ISO-classified manufacturing areas.</li>
+            <li>Logged environmental data into LIMS and generated weekly trend analyses.</li>
+            <li>Trained personnel in aseptic techniques and supported deviation investigations.</li>
+          </ul>
+        </article>
 
-    <h3>Tools</h3>
-    <ul>
-      <li>Excel, Git/GitHub, Jupyter, BacT/ALERT 3D, Ella Immunoassay</li>
-    </ul>
-  </section>
+        <article class="job">
+          <header class="job__head">
+            <h3 class="job__role">Data Intern</h3>
+            <div class="job__meta">
+              <span class="job__org">Lapetus Solutions Inc</span>
+              <span class="job__loc">Wilmington, NC</span>
+              <time class="job__dates">Sep 2013 – Sep 2019</time>
+            </div>
+          </header>
+          <ul class="job__bullets">
+            <li>Collaborated with data scientists on collection, cleaning, and standardization of large datasets.</li>
+            <li>Used Python and SQL to analyze structured data and produce visual summaries for research reports.</li>
+            <li>Developed documentation to support facial recognition algorithm testing and deployment.</li>
+          </ul>
+        </article>
 
-  <section>
-    <h2>Projects &amp; Activities</h2>
-    <ul>
-      <li>NYC Taxi Data Analysis — Spark-based exploratory data analysis and modeling (UCSD group project)</li>
-      <li>Bias in Hate-Speech NLP Datasets — Research presentation on dataset bias and mitigation strategies</li>
-      <li>Personal Portfolio Site — HTML/CSS/Javascript design for interactive visualization and storytelling</li>
-    </ul>
-  </section>
-
+        <h2>Projects &amp; Activities</h2>
+        <ul>
+          <li>NYC Taxi Data Analysis — Spark-based exploratory data analysis and modeling (UCSD group project)</li>
+          <li>Bias in Hate-Speech NLP Datasets — Research presentation on dataset bias and mitigation strategies</li>
+          <li>Personal Portfolio Site — HTML/CSS/JavaScript design for interactive visualization and storytelling</li>
+        </ul>
+      </section>
+    </section>
+  </main>
 </body>
 </html>
