@@ -1,192 +1,180 @@
 body {
-    font: 100%/1.5 arial;
-    max-width: 100ch;
-    margin-inline: max(1em, (100% - 100ch) / 2);
-    display: grid;
-    place-content: center;
-    min-height: 100vh;
-    max-width: 100ch;
-    margin-inline: auto;
-    padding: 1em;
-  }
-  
-  /* below is for neutralizing navigation styling */
-  nav ul,
-  nav li {
-    display: contents;
-  }
+  font: 100%/1.5 arial;
+  max-width: 100ch;
+  margin-inline: max(1em, (100% - 100ch) / 2);
+  min-height: 100vh;
+  margin-inline: auto;
+  padding: 1em;
+}
 
-  nav { 
-    display: flex;
-    margin-bottom: 1em;
-  }
+/* navigation */
+nav ul,
+nav li {
+  display: contents;
+}
+nav { 
+  display: flex;
+  margin-bottom: 1em;
+}
+nav a {
+  flex: 1;
+  text-decoration: none;
+  color: inherit;
+  text-align: center;
+  padding: 0.5em;
+  border-bottom: 1px solid crimson;
+}
+nav a.current {
+  border-bottom: 0.4em solid crimson;
+  padding-bottom: 0.3em;
+}
+nav a:hover {
+  border-bottom: 0.4em solid var(--color-accent);
+  background-color: rgb(from var(--color-accent) 229, 77, 107);
+  border-bottom-color: var(--color-accent);
+}
 
-  nav a {
-    flex: 1;
-    text-decoration: none;
-    color: inherit;
-    text-align: center;
-    padding: 0.5em;
-    border-bottom: 1px solid crimson;
-  }
+html {
+  --color-accent: rgb(229, 77, 107);
+  accent-color: var(--color-accent);
+}
 
-  nav a.current {
-    border-bottom: 0.4em solid crimson;
-    padding-bottom: 0.3em;
-  }
+input, textarea, button, select {
+  font: arial;
+}
+form label,
+form input,
+form textarea,
+form button {
+  display: block;
+}
+form input,
+form textarea,
+form button {
+  width: 100%;
+  box-sizing: border-box;
+}
+form label {
+  margin-block: 0.5em; 
+}
+form { 
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+form button {
+  grid-column: 1 / -1;
+}
+.contact-form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1em;
+}
+.contact-form .field {
+  display: grid;
+  grid-template-columns: subgrid; 
+  grid-column: 1 / -1;
+}
+.contact-form label { grid-column: 1; }
+.contact-form input,
+.contact-form textarea { grid-column: 2; }
+.contact-form button { grid-column: 1 / -1; }
 
-  nav a:hover {
-    border-bottom: 0.4em solid var(--color-accent);
-    background-color: rgb(from var(--color-accent) 229, 77, 107);
-    border-bottom-color: var(--color-accent);
-  }
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  gap: 1em;
+  align-items: start;
+}
+.projects img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+.projects > article {
+  grid-row: span 3; 
+  display: grid;
+  grid-template-rows: subgrid; 
+}
+.projects h2 { margin: 0; }
 
-  html {
-    --color-accent: rgb(229, 77, 107);
-    accent-color: var(--color-accent);
-  }
+h1 {
+  font: Times;
+  color: crimson;
+  font-size: 400%;  
+  line-height: 1.1;
+  text-wrap: balance;
+}
+h2 {
+  font: times;
+  line-height: 1.1;
+  text-wrap: balance;
+}
 
-  input, textarea, button, select {
-    font: arial;
-  }
+:root {
+  --color-accent: rgb(229, 77, 107);
+}
 
-  form label,
-  form input,
-  form textarea,
-  form button {
-    display: block;
-  }
-
-  form input,
-  form textarea,
-  form button {
-   width: 100%;
-    box-sizing: border-box;
-  }
-
-  form label {
-    margin-block: 0.5em; 
-  }
-
-  form { 
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1em;
-  }
-
-  form button {
-    grid-column: 1 / -1;
-  }
-
-  .contact-form {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 1em;
-  }
-  
-  .contact-form .field {
-    display: grid;
-    grid-template-columns: subgrid; 
-    grid-column: 1 / -1;
-  }
-  
-  .contact-form label { 
-    grid-column: 1;
-   }
-  .contact-form input,
-  .contact-form textarea {
-     grid-column: 2;
-     }
-  .contact-form button {
-     grid-column: 1 / -1; 
-    }
-  
-  .projects {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
-    gap: 1em;
-    align-items: start;
-  }
-
-  .projects img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .projects > article {
-    grid-row: span 3; 
-    display: grid;
-    grid-template-rows: subgrid; 
-  }
-  
-  .projects h2 {
-    margin: 0;
-  }
-
-  h1 {
-    font: Times;
-    color: crimson;
-    font-size: 400%;  
-    line-height: 1.1;
-    text-wrap: balance;
-  }
-  h2 {
-    font: times;
-    line-height: 1.1;
-    text-wrap: balance;
-  }
-
-  :root {
-     --color-accent: rgb(229, 77, 107);
-     }
-
+/* Resume layout */
 .resume { 
-  max-width: 100ch; 
+  padding-block: 4em;
+  padding-inline: 2em;
+  max-width: 80ch; 
   margin-inline: auto; 
 }
 .resume__header { 
-  margin-block: 1.5em; 
+  margin-block-end: 2.5em; 
 }
 .resume__meta { 
   opacity: 0.8; 
-  margin-top: 0.25em; }
-
+  margin-top: 0.25em;
+}
 .resume__grid {
   display: grid;
-  grid-template-columns: 16rem 1fr;
-  gap: 1.5rem;
+  grid-template-columns: 18rem 1fr;
+  row-gap: 2rem;
+  column-gap: 3rem;
 }
-
+.resume__sidebar h2,
+.resume__sidebar h3 {
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+}
+.resume__sidebar ul,
+.resume__main ul {
+  margin-block-start: 0.75em;
+  margin-block-end: 2em;
+  padding-inline-start: 1.25em;
+}
 @media (max-width: 900px) {
   .resume__grid {
-     grid-template-columns: 1fr; 
-    }
+    grid-template-columns: 1fr; 
+    row-gap: 2.5rem;
+  }
+  .resume {
+    padding-block: 2em;
+    padding-inline: 1em;
+  }
 }
-
 .job { 
-  padding-block: 1em; 
+  padding-block: 2em; 
   border-bottom: 1px solid oklch(90% 3% 200); 
 }
-.job:last-of-type { 
-  border-bottom: none; 
-}
+.job:last-of-type { border-bottom: none; }
 .job__head { 
   display: grid;
-   grid-template-columns: 1fr auto;
-    align-items: baseline;
-     gap: .5rem; 
-    }
-.job__role { 
-  margin: 0;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 1rem; 
 }
+.job__role { margin: 0; }
 .job__meta {
-   display: flex;
-    gap: .75rem;
-     flex-wrap: wrap;
-      justify-self: end;
-       opacity: .85; 
-      }
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-self: end;
+  opacity: .85; 
+}
 .job__bullets {
-   margin: .5em 0 0 1.1em;
-  }
+  margin: .75em 0 0 1.25em;
+}
