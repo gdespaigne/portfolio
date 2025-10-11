@@ -5,6 +5,12 @@ body {
     font: 100%/1.5 system-ui;
     max-width: 100ch;
     margin-inline: max(1em, (100% - 100ch) / 2);
+    display: grid;
+    place-content: center;
+    min-height: 100vh;
+    max-width: 100ch;
+    margin-inline: auto;
+    padding: 1em;
   }
   
   /* below is for neutralizing navigation styling */
