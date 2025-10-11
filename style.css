@@ -31,18 +31,18 @@ body {
   }
 
   nav a.current {
-    border-bottom: 0.4em solid crimson(80% 3% 200);
+    border-bottom: 0.4em solid crimson;
     padding-bottom: 0.3em;
   }
 
   nav a:hover {
     border-bottom: 0.4em solid var(--color-accent);
-    background-color: oklch(from var(--color-accent) 95% 5% h);
+    background-color: rgb(from var(--color-accent) 229, 77, 107);
     border-bottom-color: var(--color-accent);
   }
 
   html {
-    --color-accent: crimson(65% 50% 0);
+    --color-accent: rgb(229, 77, 107);
     accent-color: var(--color-accent);
   }
 
@@ -138,11 +138,11 @@ body {
   }
 
   :root {
-     --color-accent: crimson(65% 50% 0);
+     --color-accent: rgb(229, 77, 107);
      }
 
 .resume { 
-  max-width: 80ch; 
+  max-width: 100ch; 
   margin-inline: auto; 
 }
 .resume__header { 
