@@ -1,8 +1,5 @@
 body {
-    /* Set line height to 1.5 times the font size
-         and use the OS’s UI font as the website font
-       */
-    font: 100%/1.5 system-ui;
+    font: 100%/1.5 arial;
     max-width: 100ch;
     margin-inline: max(1em, (100% - 100ch) / 2);
     display: grid;
@@ -30,11 +27,11 @@ body {
     color: inherit;
     text-align: center;
     padding: 0.5em;
-    border-bottom: 1px solid oklch(80% 3% 200);
+    border-bottom: 1px solid crimson;
   }
 
   nav a.current {
-    border-bottom: 0.4em solid oklch(80% 3% 200);
+    border-bottom: 0.4em solid crimson(80% 3% 200);
     padding-bottom: 0.3em;
   }
 
@@ -45,12 +42,12 @@ body {
   }
 
   html {
-    --color-accent: oklch(65% 50% 0);
+    --color-accent: crimson(65% 50% 0);
     accent-color: var(--color-accent);
   }
 
   input, textarea, button, select {
-    font: inherit;
+    font: arial;
   }
 
   form label,
@@ -93,10 +90,16 @@ body {
     grid-column: 1 / -1;
   }
   
-  .contact-form label { grid-column: 1; }
+  .contact-form label { 
+    grid-column: 1;
+   }
   .contact-form input,
-  .contact-form textarea { grid-column: 2; }
-  .contact-form button { grid-column: 1 / -1; }
+  .contact-form textarea {
+     grid-column: 2;
+     }
+  .contact-form button {
+     grid-column: 1 / -1; 
+    }
   
   .projects {
     display: grid;
@@ -122,16 +125,21 @@ body {
   }
 
   h1 {
+    font: Times;
+    color: crimson;
     font-size: 400%;  
     line-height: 1.1;
     text-wrap: balance;
   }
   h2 {
+    font: times;
     line-height: 1.1;
     text-wrap: balance;
   }
 
-  :root { --color-accent: oklch(65% 50% 0); }
+  :root {
+     --color-accent: crimson(65% 50% 0);
+     }
 
 .resume { 
   max-width: 80ch; 
@@ -151,7 +159,9 @@ body {
 }
 
 @media (max-width: 900px) {
-  .resume__grid { grid-template-columns: 1fr; }
+  .resume__grid {
+     grid-template-columns: 1fr; 
+    }
 }
 
 .job { 
