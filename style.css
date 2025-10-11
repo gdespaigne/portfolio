@@ -96,6 +96,37 @@ body {
   .contact-form label { grid-column: 1; }
   .contact-form input,
   .contact-form textarea { grid-column: 2; }
-  
   .contact-form button { grid-column: 1 / -1; }
   
+  .projects {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+    gap: 1em;
+    align-items: start;
+  }
+
+  .projects img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .projects > article {
+    grid-row: span 3; 
+    display: grid;
+    grid-template-rows: subgrid; 
+  }
+  
+  .projects h2 {
+    margin: 0;
+  }
+
+  h1 {
+    font-size: 400%;  
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+  h2 {
+    line-height: 1.1;
+    text-wrap: balance;
+  }
