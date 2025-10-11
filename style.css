@@ -48,19 +48,19 @@ body {
   }
 
   form label,
-form input,
-form textarea,
-form button {
-  display: block;
-}
+  form input,
+  form textarea,
+  form button {
+    display: block;
+  }
 
-form input,
-form textarea,
-form button {
-  width: 100%;
-  box-sizing: border-box;
-}
+  form input,
+  form textarea,
+  form button {
+   width: 100%;
+    box-sizing: border-box;
+  }
 
-form label {
-  margin-block: 0.5em; 
-}
+  form label {
+    margin-block: 0.5em; 
+  }
