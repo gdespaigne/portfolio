@@ -19,21 +19,23 @@ nav {
 nav a {
   flex: 1;
   text-decoration: none;
-  color: inherit;
+  color: var(--ink);
   text-align: center;
   padding: 0.5em;
-  border-bottom: 1px solid crimson;
+  border-bottom: 1px solid var(--nav-underline);
 }
 nav a.current {
-  border-bottom: 0.4em solid crimson;
+  border-bottom: 0.4em solid var(--nav-underline-strong);
   padding-bottom: 0.3em;
-  text-decoration: underline;
   font-weight:600;
 }
-nav a:hover {
+nav a:hover,
+nav a:focus-visible {
   border-bottom: 0.4em solid var(--color-accent);
+  background: var(--nav-hover-bg);
   background-color: rgb(from var(--color-accent) 229, 77, 107);
-  border-bottom-color: var(--color-accent);
+  border-bottom-color: var(--nav-underline-strong);
+  outline: none;
 }
 
 html {
@@ -116,6 +118,12 @@ h2 {
 :root {
   --color-accent: rgb(229, 77, 107);
   color-scheme: light dark;
+  --ink: CanvasText;
+  --surface: Canvas;
+  --accent: AccentColor;
+  --nav-underline: color-mix(in oklab, var(--accent) 60%, var(--surface) 40%);
+  --nav-underline-strong: color-mix(in oklab, var(--accent) 75%, var(--surface) 25%);
+  --nav-hover-bg: color-mix(in oklab, var(--accent) 12%, var(--surface) 88%);
 }
 
 /* Resume layout */
@@ -133,7 +141,7 @@ h2 {
 }
 .resume__meta { 
   opacity: 0.8; 
-  margin-top: 0.25em;
+  margin-top: 0.2em;
 }
 .resume__grid {
   display: grid;

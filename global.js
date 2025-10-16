@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", () => {
       { href: "",          title: "Home" },
       { href: "projects/", title: "Projects" },
       { href: "resume/",   title: "Resume" },
-      { href: "contact/",  title: "Contact" }
+      { href: "contact/",  title: "Contact" },
+      { href: "https://github.com/gdespaigne", title: "GitHub" }
     ];
   
     let header = document.querySelector("#site-header");
