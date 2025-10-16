@@ -27,6 +27,8 @@ nav a {
 nav a.current {
   border-bottom: 0.4em solid crimson;
   padding-bottom: 0.3em;
+  text-decoration: underline;
+  font-weight:600;
 }
 nav a:hover {
   border-bottom: 0.4em solid var(--color-accent);
@@ -113,6 +115,7 @@ h2 {
 
 :root {
   --color-accent: rgb(229, 77, 107);
+  color-scheme: light dark;
 }
 
 /* Resume layout */
@@ -190,4 +193,14 @@ h2 {
 }
 .job__bullets {
   margin: .75em 0 0 1.25em;
+}
+
+.color-scheme {
+  position: fixed;
+  top: 0.75rem;
+  right: 0.75rem;
+  font-size:0.9rem;
+  background: color-mix(in oklab, Canvas 85%, CanvasText 15%);
+  padding: 0.4rem 0.6rem;
+  border-radius: 0.5rem;
 }
