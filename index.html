@@ -5,18 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gabrielle Despaigne: Personal site and portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <script type="module" src="global.js"></script>
 </head>
+
+<script type="module" src="/portfolio/global.js"></script>
+<script>
+  (function () {
+    var src = location.hostname.endsWith('github.io') ? '/portfolio/global.js' : 'global.js';
+    var s = document.createElement('script');
+    s.type = 'module';
+    s.src = src;
+    document.currentScript.after(s);
+  }());
+</script>
+
 <body>
-    <nav> 
-      <ul>
-        <li><a href="/portfolio/">Home</a></li>
-        <li><a href="/portfolio/projects/">Projects</a></li>
-        <li><a href="/portfolio/contact/">Contact</a></li>
-        <li><a href="/portfolio/resume/">Resume</a></li>
-        <li><a href="https://github.com/gdespaigne" target="_blank" rel="noopener">Github</a></li>
-      </ul>
-    </nav>
+    <nav> </nav>
     <h1>Gabrielle Despaigne</h1>
     <p>This is a temporary description, I like cats! And dogs! My dog's name is Niko.</p>
     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Molestias dolorem sunt iste nihil commodi odio officiis totam tenetur ducimus minus nostrum consequatur provident magni, dolorum minima quod, debitis sit? Obcaecati?</p>

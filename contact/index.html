@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script type="module" src="global.js"></script>
   <link rel="stylesheet" href="/portfolio/style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
 </head>
+
+<script type="module" src="/portfolio/global.js"></script>
+<script>
+  (function () {
+    var src = location.hostname.endsWith('github.io') ? '/portfolio/global.js' : 'global.js';
+    var s = document.createElement('script');
+    s.type = 'module';
+    s.src = src;
+    document.currentScript.after(s);
+  }());
+</script>
+
 <body>
   <nav> 
-    <ul>
-      <li><a href="/portfolio/">Home</a></li>
-      <li><a href="/portfolio/projects/">Projects</a></li>
-      <li><a href="/portfolio/contact/">Contact</a></li>
-      <li><a href="/portfolio/resume/">Resume</a></li>
-      <li><a href="https://github.com/gdespaigne" target="_blank" rel="noopener">Github</a></li>
-    </ul>
+
   </nav>
   
     <h1>Contact Me</h1>
