@@ -232,6 +232,6 @@ h2 {
 
 .resume__sidebar h2:not(:first-child),
 .resume__main h2:not(:first-child) {
-  margin-top: 1.5em;
+  margin-top: 2em;
   margin-bottom: 0.75em;
 }
