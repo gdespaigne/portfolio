@@ -178,7 +178,8 @@ h2 {
   }
 }
 .job { 
-  padding-block: 2em; 
+  padding-top: 0.75em; 
+  padding-bottom: 1.5em;
   border-bottom: 1px solid oklch(90% 3% 200); 
 }
 .job:last-of-type { 
