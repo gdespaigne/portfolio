@@ -219,3 +219,18 @@ h2 {
   border-radius: 0.5rem;
 }
 
+.resume__sidebar h2:first-child,
+.resume__main h2:first-child {
+  margin-top: 0;
+}
+
+.resume__sidebar,
+.resume__main {
+  padding-top: 0.5rem;
+}
+
+.resume__sidebar h2:not(:first-child),
+.resume__main h2:not(:first-child) {
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
