@@ -156,7 +156,8 @@ h2 {
   align-items: start;
 }
 .resume__sidebar h2,
-.resume__sidebar h3 {
+.resume__sidebar h3 
+.resume__main h2 {
   margin-top: 2em;
   margin-bottom: 0.75em;
 }
