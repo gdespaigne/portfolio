@@ -12,9 +12,9 @@ currentLink?.classList.add("current");
 
 const pages = [
     { url: "", title: "Home" },
-    { url: "/portfolio/projects/", title: "Projects" },
-    { url: "/portfolio/contact/", title: "Contact" },
-    { url: "/portfolio/resume/", title: "Resume" },
+    { url: "/projects/", title: "Projects" },
+    { url: "/contact/", title: "Contact" },
+    { url: "/resume/", title: "Resume" },
     { url: "https://github.com/gdespaigne", title: "Github" },
   ];
 
