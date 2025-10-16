@@ -8,6 +8,23 @@ body {
 }
 
 /* navigation */
+
+:root {
+  --brand: var(--color-accent, rgb(229, 77, 107));
+  color-scheme: light dark;
+  --nav-underline: var(--brand); 
+  --nav-underline-strong: var(--brand);
+  --nav-hover-bg: color-mix(in oklab, var(--brand) 12%, Canvas 88%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nav-underline: color-mix(in oklab, var(--brand) 70%, Canvas 30%);
+    --nav-underline-strong: color-mix(in oklab, var(--brand) 85%, Canvas 15%);
+    --nav-hover-bg: color-mix(in oklab, var(--brand) 18%, Canvas 82%);
+  }
+}
+
 nav ul,
 nav li {
   display: contents;
@@ -19,7 +36,7 @@ nav {
 nav a {
   flex: 1;
   text-decoration: none;
-  color: var(--ink);
+  color: inherit;
   text-align: center;
   padding: 0.5em;
   border-bottom: 1px solid var(--nav-underline);
@@ -31,10 +48,8 @@ nav a.current {
 }
 nav a:hover,
 nav a:focus-visible {
-  border-bottom: 0.4em solid var(--color-accent);
-  background: var(--nav-hover-bg);
-  background-color: rgb(from var(--color-accent) 229, 77, 107);
   border-bottom-color: var(--nav-underline-strong);
+  background-color: var(--nav-hover-bg);
   outline: none;
 }
 
@@ -115,16 +130,6 @@ h2 {
   text-wrap: balance;
 }
 
-:root {
-  --color-accent: rgb(229, 77, 107);
-  color-scheme: light dark;
-  --ink: CanvasText;
-  --surface: Canvas;
-  --accent: AccentColor;
-  --nav-underline: color-mix(in oklab, var(--accent) 60%, var(--surface) 40%);
-  --nav-underline-strong: color-mix(in oklab, var(--accent) 75%, var(--surface) 25%);
-  --nav-hover-bg: color-mix(in oklab, var(--accent) 12%, var(--surface) 88%);
-}
 
 /* Resume layout */
 .resume { 
