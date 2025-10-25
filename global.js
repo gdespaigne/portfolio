@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     containerElement.innerHTML = '';
 
-    projects.forEach(project => {
+    project.forEach(project => {
       const article = document.createElement('article');
       article.innerHTML = `
       <${headingLevel}>${project.title}</${headingLevel}>
