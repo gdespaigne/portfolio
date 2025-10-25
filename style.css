@@ -298,15 +298,17 @@ h2 {
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 1rem;
   margin-top: 1rem;
+  color: crimson;
   text-align: center;
 }
 
 .github-grid .stat {
-  background-color: #fff;
-  border: 1px solid #e6e6e6;
+  border: 1px solid oklch(90% 3% / 1);
   border-radius: 12px;
-  padding: 1rem;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  padding: 0.875rem;
+  background: Canvas;   
+  box-shadow: none;
+  text-align: center;
 }
 
 .github-grid .stat dt {
@@ -321,3 +323,5 @@ h2 {
   font-size: 1.25rem;
   color: #007acc;
 }
+
+#profile-stats dl { all: unset; }
