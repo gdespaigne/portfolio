@@ -293,3 +293,31 @@ h2 {
   margin: 0;
 }
 
+.github-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.github-grid .stat {
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.github-grid .stat dt {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+  color: #333;
+}
+
+.github-grid .stat dd {
+  margin: 0;
+  font-size: 1.25rem;
+  color: #007acc;
+}
