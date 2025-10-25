@@ -88,3 +88,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const data = await response.json();
   return data;
+
+  export function renderProjects(project, containerElement, headingLevel = 'h2') {
+    if (!containerElement) return;
+
+    containerElement.innerHTML = '';
+
+    projects.forEach(project => {
+      const article = document.createElement('article');
+      article.innerHTML = `
+      <${headingLevel}>${project.title}</${headingLevel}>
+      <img src="${project.image}" alt="${project.title}">
+      <p>${project.description}</p>
+    `;
+
+    containerElement.appendChild(article);
+  });
+}
+
