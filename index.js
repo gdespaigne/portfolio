@@ -13,8 +13,8 @@ import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
   const profileStats = document.querySelector('#profile-stats');
   if (profileStats) {
     try {
-      const githubData = await fetchGitHubData('gdespaigne'); // fetch and parse JSON
-      console.log(githubData); // for the lab's "test your knowledge" check
+      const githubData = await fetchGitHubData('gdespaigne'); 
+      console.log(githubData); // ok to keep for the lab
 
       if (githubData && !githubData.message) {
         profileStats.innerHTML = `
@@ -34,3 +34,4 @@ import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
     }
   }
 })();
+
