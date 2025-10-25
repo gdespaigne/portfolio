@@ -10,28 +10,27 @@ import { fetchJSON, renderProjects, fetchGitHubData } from './global.js';
   }
 
   // github stats
-  const statsEl = document.getElementById('github-stats');
-  if (statsEl) {
+  const profileStats = document.querySelector('#profile-stats');
+  if (profileStats) {
     try {
-      const data = await fetchGitHubData('gdespaigne');
-      if (data && !data.message) {
-        statsEl.innerHTML = `
+      const githubData = await fetchGitHubData('gdespaigne'); // fetch and parse JSON
+      console.log(githubData); // for the lab's "test your knowledge" check
+
+      if (githubData && !githubData.message) {
+        profileStats.innerHTML = `
           <dl>
-            <dt>public repos</dt><dd>${data.public_repos}</dd>
-            <dt>public gists</dt><dd>${data.public_gists}</dd>
-            <dt>followers</dt><dd>${data.followers}</dd>
-            <dt>following</dt><dd>${data.following}</dd>
+            <dt>public repos</dt><dd>${githubData.public_repos}</dd>
+            <dt>public gists</dt><dd>${githubData.public_gists}</dd>
+            <dt>followers</dt><dd>${githubData.followers}</dd>
+            <dt>following</dt><dd>${githubData.following}</dd>
           </dl>
         `;
       } else {
-        statsEl.textContent = 'unable to load github stats right now.';
+        profileStats.textContent = 'unable to load github stats right now.';
       }
     } catch (err) {
       console.error(err);
-      statsEl.textContent = 'unable to load github stats right now.';
+      profileStats.textContent = 'unable to load github stats right now.';
     }
   }
 })();
-
-const githubData = await fetchGitHubData('gdespaigne');
-console.log(githubData);
