@@ -321,7 +321,5 @@ h2 {
 .github-grid .stat dd {
   margin: 0;
   font-size: 1.25rem;
-  color: #007acc;
+  color: crimson;
 }
-
-#profile-stats dl { all: unset; }
