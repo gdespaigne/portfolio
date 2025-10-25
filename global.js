@@ -75,9 +75,10 @@ document.addEventListener("DOMContentLoaded", () => {
     select.addEventListener("input", e => setColorScheme(e.target.value));
   });
   
+
   try {
     // Fetch the JSON file from the given URL
-    const response = await fetch(lib/projects.json);
+    const response = await fetch(url);
   } catch (error) {
     console.error('Error fetching or parsing JSON data:', error);
   }
