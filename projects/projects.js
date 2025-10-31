@@ -32,9 +32,14 @@ import { fetchJSON, renderProjects } from "../global.js";
   const svg = d3.select("#projects-pie-plot");
   svg.selectAll("*").remove(); 
 
-  const color = d3.scaleOrdinal()
-    .domain(entries.map(d => d[0]))
-    .range(d3.schemeTableau10);
+  const color = d3.scaleOrdinal(d3.schemeTableau10);
+
+  svg.selectAll("path.slice")
+    .data(pie(entries))
+    .join("path")
+      .attr("class", "slice")
+      .attr("d", arc)
+      .attr("fill", (d, i) => color(i));
 
   // slices and optional labels
   const slices = svg.selectAll("path.slice")
