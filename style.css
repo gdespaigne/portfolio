@@ -331,5 +331,9 @@ h2 {
 
 .project-year {
   font-family: "Times New Roman", Times, serif;
+  font-style: italic;
+  opacity: 0.85;
+  margin-top: 0.25rem;
   color: Crimson;
 }
+
