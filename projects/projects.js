@@ -2,6 +2,7 @@ import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { fetchJSON, renderProjects } from "/portfolio/global.js";
 
 (async () => {
+  // render the projects grid first
   const container = document.getElementById("projects-list");
   if (!container) return;
 
@@ -11,7 +12,14 @@ import { fetchJSON, renderProjects } from "/portfolio/global.js";
   const titleEl = document.querySelector("main h1") || document.querySelector("h1");
   if (titleEl) titleEl.textContent = `(${projects.length}) Projects`;
 
-  // count projects by year
+  // find the svg
+  const svg = d3.select("#projects-pie-plot");
+  if (svg.empty()) {
+    console.warn("No #projects-pie-plot SVG found in HTML");
+    return;
+  }
+
+  // aggregate data: count projects by year
   const byYear = new Map();
   for (const p of projects) {
     const y = p.year ?? "Unknown";
@@ -19,12 +27,12 @@ import { fetchJSON, renderProjects } from "/portfolio/global.js";
   }
   const entries = Array.from(byYear.entries()).sort((a, b) => d3.ascending(a[0], b[0]));
   const data = entries.map(([label, value]) => ({ label, value }));
-
-  const svg = d3.select("#projects-pie-plot");
-  if (svg.empty()) {
-    console.warn("No #projects-pie-plot SVG found");
+  if (data.length === 0) {
+    console.warn("No data to draw. Ensure project objects include a 'year' field.");
     return;
   }
+
+  // clear and draw pie
   svg.selectAll("*").remove();
 
   const pie = d3.pie().value(d => d.value).sort(null);
@@ -34,7 +42,7 @@ import { fetchJSON, renderProjects } from "/portfolio/global.js";
   const colors = d3.scaleOrdinal(d3.schemeTableau10)
     .domain(data.map(d => d.label));
 
-  // draw slices
+  // slices
   svg.selectAll("path.slice")
     .data(arcs)
     .join("path")
@@ -59,7 +67,7 @@ import { fetchJSON, renderProjects } from "/portfolio/global.js";
       .style("fill", "black")
       .text(d => d.data.label);
 
-  // legend if present
+  // legend
   const legendRoot = d3.select(".legend");
   if (!legendRoot.empty()) {
     legendRoot.selectAll("*").remove();
