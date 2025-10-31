@@ -64,4 +64,6 @@ import { fetchJSON, renderProjects } from "../global.js";
       .style("font", "10px Times, serif")
       .style("fill", "black")
       .text(d => d.data[0]);
+
+      
 })();
