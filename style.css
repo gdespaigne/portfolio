@@ -323,3 +323,13 @@ h2 {
   font-size: 1.25rem;
   color: crimson;
 }
+
+.project-desc-wrap { 
+  display: grid;
+  gap: 0.25rem;
+}
+
+.project-year {
+  font-family: "Times New Roman", Times, serif;
+  color: Crimson;
+}
