@@ -57,6 +57,6 @@ import { fetchJSON, renderProjects } from "../global.js";
       .attr("text-anchor", "middle")
       .attr("dy", "0.35em")
       .style("font", "10px Times, serif")
-      .style("fill", "crimson")
+      .style("fill", "black")
       .text(d => d.data[0]);
 })();
