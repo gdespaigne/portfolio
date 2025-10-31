@@ -11,7 +11,6 @@ import { fetchJSON, renderProjects } from "../global.js";
   const titleEl = document.querySelector("main h1") || document.querySelector("h1");
   if (titleEl) titleEl.textContent = `(${projects.length}) Projects`;
 
-  // arc section 
   const byYear = new Map();
   for (const p of projects) {
     const y = p.year ?? "Unknown";
@@ -20,39 +19,35 @@ import { fetchJSON, renderProjects } from "../global.js";
 
   const entries = Array.from(byYear.entries()).sort((a, b) => d3.ascending(a[0], b[0]));
 
+  const data = entries.map(([label, value]) => ({ label, value }));
+
   const pie = d3.pie()
-    .value(d => d[1])
+    .value(d => d.value)
     .sort(null);
 
-  // arc creation
   const arc = d3.arc()
     .innerRadius(10)
     .outerRadius(50);
 
   const svg = d3.select("#projects-pie-plot");
-  svg.selectAll("*").remove(); 
+  svg.selectAll("*").remove();
 
-  const color = d3.scaleOrdinal(d3.schemeTableau10);
+  const colors = d3.scaleOrdinal(d3.schemeTableau10)
+    .domain(data.map(d => d.label));
 
+  const arcs = pie(data);
   svg.selectAll("path.slice")
-    .data(pie(entries))
+    .data(arcs)
     .join("path")
       .attr("class", "slice")
       .attr("d", arc)
-      .attr("fill", (d, i) => color(i));
-
-  // slices and optional labels
-  const slices = svg.selectAll("path.slice")
-    .data(pie(entries))
-    .join("path")
-      .attr("class", "slice")
-      .attr("d", arc)
-      .attr("fill", d => color(d.data[0]))
+      .attr("fill", d => colors(d.data.label))
       .attr("stroke", "white")
       .attr("stroke-width", 1);
 
+  // optional labels at centroids
   svg.selectAll("text.label")
-    .data(pie(entries))
+    .data(arcs)
     .join("text")
       .attr("class", "label")
       .attr("transform", d => {
@@ -63,7 +58,18 @@ import { fetchJSON, renderProjects } from "../global.js";
       .attr("dy", "0.35em")
       .style("font", "10px Times, serif")
       .style("fill", "black")
-      .text(d => d.data[0]);
+      .text(d => d.data.label);
 
-      
+  // legend
+  const legendRoot = d3.select(".legend");
+  if (!legendRoot.empty()) {
+    legendRoot.selectAll("*").remove();
+
+    const items = legendRoot.selectAll("li")
+      .data(data, d => d.label)
+      .join("li")
+        .attr("style", (d, i) => `--color:${colors(i)}`);
+
+    items.html(d => `<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+  }
 })();
