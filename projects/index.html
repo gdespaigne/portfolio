@@ -5,23 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Projects</title>
   <link rel="stylesheet" href="/portfolio/style.css"/>
-  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   <script type="module" src="/portfolio/global.js"></script>
 </head>
 
 <body>
   <main>
+    <!-- visualization section -->
+    <section id="viz-section">
+      <svg id ="projects-pie-plot" viewBox="-50 -50 100 100">
+      </svg>
+    </section>
+
+    <!-- projects section-->
     <section>
       <h1>Projects</h1>
       <div id="projects-list" class="projects"></div>
     </section>
 
-    <!-- visualization section -->
-    <section id="viz-section">
-      <svg id ="projects-pie-plot" viewBox="-50 -50 100 100">
-        <circle cx="0" cy="0" r="50" fill="red" />
-      </svg>
-    </section>
   </main>
   <script type="module" src="./projects.js"></script>
 </body>
