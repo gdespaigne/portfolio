@@ -1,7 +1,9 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { fetchJSON, renderProjects } from "/portfolio/global.js";
 
-let HIDDEN = new Set();
+let BASE = [];
+let TERM = "";
+let SELECTED_YEARS = new Set();
 
 let computeData = list => {
   let byYear = new Map();
@@ -17,20 +19,45 @@ let computeData = list => {
   return entries.map(([label, value]) => ({ label, value }));
 };
 
-let drawPie = (selector, data) => {
+let allYears = list => computeData(list).map(d => d.label);
+
+let applyFilters = () => {
+  let container = document.getElementById("projects-list");
+  if (!container) return;
+
+  let term = TERM.toLowerCase().trim();
+  let filtered = BASE.filter(p => {
+    let y = p?.year ?? "Unknown";
+    if (SELECTED_YEARS.size > 0 && !SELECTED_YEARS.has(y)) return false;
+    if (!term) return true;
+    let title = (p.title || "").toLowerCase();
+    let desc  = (p.description || "").toLowerCase();
+    let yr    = p.year ? String(p.year) : "";
+    return title.includes(term) || desc.includes(term) || yr.includes(term);
+  });
+
+  renderProjects(filtered, container, "h2");
+
+  let titleEl = document.querySelector("main h1") || document.querySelector("h1");
+  if (titleEl) titleEl.textContent = `(${filtered.length}) Projects`;
+
+  let dataNow = computeData(filtered);
+  drawPie("#projects-pie-plot", dataNow, allYears(BASE));
+};
+
+let drawPie = (selector, dataNow, yearsDomain) => {
   let svg = d3.select(selector);
   if (svg.empty()) return;
 
-  let visible = data.filter(d => !HIDDEN.has(d.label));
   let W = 320, H = 320;
   svg.attr("width", W).attr("height", H);
   svg.selectAll("*").remove();
 
   let pie = d3.pie().value(d => d.value).sort(null);
   let arc = d3.arc().innerRadius(10).outerRadius(50);
-  let arcs = pie(visible);
+  let arcs = pie(dataNow);
 
-  let colors = d3.scaleOrdinal(d3.schemeTableau10).domain(data.map(d => d.label));
+  let colors = d3.scaleOrdinal(d3.schemeTableau10).domain(yearsDomain);
 
   let slices = svg.selectAll("path.slice")
     .data(arcs, d => d.data.label)
@@ -40,46 +67,48 @@ let drawPie = (selector, data) => {
       .attr("fill", d => colors(d.data.label))
       .attr("stroke", "white")
       .attr("stroke-width", 1)
-      .style("transition", "opacity 150ms ease, transform 150ms ease");
-
-  slices
-    .on("mouseenter", function (e, d) {
-      slices.style("opacity", s => (s.data.label === d.data.label ? 1 : 0.35));
-      d3.select(this)
-        .attr("stroke-width", 2)
-        .transition()
-        .duration(150)
-        .attr("transform", "scale(0.9)");
-    })
-    .on("mouseleave", function () {
-      slices
-        .transition()
-        .duration(150)
-        .attr("transform", "scale(1)")
-        .attr("stroke-width", 1)
-        .style("opacity", 1);
-    });
+      .style("transition", "opacity 150ms ease, transform 150ms ease")
+      .style("opacity", d => (SELECTED_YEARS.size === 0 || SELECTED_YEARS.has(d.data.label)) ? 1 : 0.35)
+      .on("mouseenter", function (e, d) {
+        slices.style("opacity", s => (s.data.label === d.data.label ? 1 : 0.35));
+        d3.select(this).attr("stroke-width", 2)
+          .transition().duration(150).attr("transform", "scale(0.9)");
+      })
+      .on("mouseleave", function () {
+        slices.transition().duration(150).attr("transform", "scale(1)");
+        slices.style("opacity", s => (SELECTED_YEARS.size === 0 || SELECTED_YEARS.has(s.data.label)) ? 1 : 0.35)
+              .attr("stroke-width", 1);
+      })
+      .on("click", (e, d) => {
+        let y = d.data.label;
+        if (SELECTED_YEARS.has(y)) {
+          SELECTED_YEARS.delete(y);
+        } else {
+          SELECTED_YEARS.add(y);
+        }
+        applyFilters();
+      });
 
   let legendRoot = d3.select(".legend");
   if (!legendRoot.empty()) {
+    let currentMap = new Map(dataNow.map(d => [d.label, d.value]));
     let li = legendRoot.selectAll("li")
-      .data(data, d => d.label)
+      .data(yearsDomain, d => d)
       .join("li")
         .attr("style", (d, i) => `--color:${d3.schemeTableau10[i % 10]}`)
-        .classed("is-hidden", d => HIDDEN.has(d.label))
-        .html(d => `<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
-
-    li.on("mouseenter", (e, d) => {
-        slices.style("opacity", s => (s.data.label === d.label ? 1 : 0.35));
-      })
-      .on("mouseleave", () => {
-        slices.style("opacity", 1);
-      })
-      .on("click", (e, d) => {
-        if (HIDDEN.has(d.label)) HIDDEN.delete(d.label);
-        else HIDDEN.add(d.label);
-        drawPie(selector, data);
-      });
+        .classed("is-hidden", d => SELECTED_YEARS.size > 0 && !SELECTED_YEARS.has(d))
+        .html(d => `<span class="swatch"></span> ${d} <em>(${currentMap.get(d) ?? 0})</em>`)
+        .on("mouseenter", (e, d) => {
+          slices.style("opacity", s => (s.data.label === d ? 1 : 0.35));
+        })
+        .on("mouseleave", () => {
+          slices.style("opacity", s => (SELECTED_YEARS.size === 0 || SELECTED_YEARS.has(s.data.label)) ? 1 : 0.35);
+        })
+        .on("click", (e, d) => {
+          if (SELECTED_YEARS.has(d)) SELECTED_YEARS.delete(d);
+          else SELECTED_YEARS.add(d);
+          applyFilters();
+        });
   }
 };
 
@@ -87,46 +116,30 @@ let drawPie = (selector, data) => {
   let container = document.getElementById("projects-list");
   if (!container) return;
 
-  let projects = [];
   try {
-    projects = await fetchJSON("../lib/projects.json");
+    BASE = await fetchJSON("../lib/projects.json");
   } catch (_) {
-    projects = [];
+    BASE = [];
   }
 
-  renderProjects(projects, container, "h2");
+  renderProjects(BASE, container, "h2");
 
   let titleEl = document.querySelector("main h1") || document.querySelector("h1");
-  if (titleEl) titleEl.textContent = `(${projects.length}) Projects`;
+  if (titleEl) titleEl.textContent = `(${BASE.length}) Projects`;
 
-  let data = computeData(projects);
-  drawPie("#projects-pie-plot", data);
+  applyFilters();
 
   let searchInput = document.querySelector('input[type="search"]') || document.getElementById("project-search");
   if (searchInput) {
     searchInput.addEventListener("input", e => {
-      let term = e.target.value.toLowerCase().trim();
-      let filtered = projects.filter(p =>
-        (p.title && p.title.toLowerCase().includes(term)) ||
-        (p.description && p.description.toLowerCase().includes(term)) ||
-        (p.year && String(p.year).includes(term))
-      );
-
-      renderProjects(filtered, container, "h2");
-      if (titleEl) titleEl.textContent = `(${filtered.length}) Projects`;
-
-      HIDDEN = new Set();
-      let filteredData = computeData(filtered);
-      drawPie("#projects-pie-plot", filteredData);
+      TERM = e.target.value || "";
+      applyFilters();
     });
-
     searchInput.addEventListener("keydown", e => {
       if (e.key === "Escape") {
+        TERM = "";
         searchInput.value = "";
-        renderProjects(projects, container, "h2");
-        if (titleEl) titleEl.textContent = `(${projects.length}) Projects`;
-        HIDDEN = new Set();
-        drawPie("#projects-pie-plot", computeData(projects));
+        applyFilters();
       }
     });
   }
