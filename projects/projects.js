@@ -3,11 +3,26 @@ import { fetchJSON, renderProjects } from "/portfolio/global.js";
 
 let HIDDEN = new Set();
 
+let computeData = list => {
+  let byYear = new Map();
+  for (let p of list) {
+    let y = p?.year ?? "Unknown";
+    byYear.set(y, (byYear.get(y) || 0) + 1);
+  }
+  let entries = Array.from(byYear.entries()).sort((a, b) => {
+    let ax = isNaN(+a[0]) ? Infinity : +a[0];
+    let bx = isNaN(+b[0]) ? Infinity : +b[0];
+    return d3.ascending(ax, bx);
+  });
+  return entries.map(([label, value]) => ({ label, value }));
+};
+
 let drawPie = (selector, data) => {
   let svg = d3.select(selector);
   if (svg.empty()) return;
 
   let visible = data.filter(d => !HIDDEN.has(d.label));
+
   let W = 320, H = 320;
   svg.attr("width", W).attr("height", H);
   svg.selectAll("*").remove();
@@ -71,34 +86,31 @@ let drawPie = (selector, data) => {
     projects = [];
   }
 
-  try {
-    renderProjects(projects, container, "h2");
-  } catch (_) {}
+  renderProjects(projects, container, "h2");
 
   let titleEl = document.querySelector("main h1") || document.querySelector("h1");
   if (titleEl) titleEl.textContent = `(${projects.length}) Projects`;
 
-  let data = [];
-  if (projects.length) {
-    let byYear = new Map();
-    for (let p of projects) {
-      let y = p?.year ?? "Unknown";
-      byYear.set(y, (byYear.get(y) || 0) + 1);
-    }
-    let entries = Array.from(byYear.entries()).sort((a, b) => {
-      let ax = isNaN(+a[0]) ? Infinity : +a[0];
-      let bx = isNaN(+b[0]) ? Infinity : +b[0];
-      return d3.ascending(ax, bx);
-    });
-    data = entries.map(([label, value]) => ({ label, value }));
-  }
-  if (!data.length) {
-    data = [
-      { label: "sample a", value: 3 },
-      { label: "sample b", value: 5 },
-      { label: "sample c", value: 2 }
-    ];
-  }
-
+  let data = computeData(projects);
   drawPie("#projects-pie-plot", data);
+
+  let searchInput = document.getElementById("project-search");
+  if (searchInput) {
+    searchInput.addEventListener("input", e => {
+      let term = e.target.value.toLowerCase();
+      let filtered = projects.filter(p =>
+        (p.title && p.title.toLowerCase().includes(term)) ||
+        (p.description && p.description.toLowerCase().includes(term)) ||
+        (p.year && String(p.year).includes(term))
+      );
+
+      renderProjects(filtered, container, "h2");
+
+      if (titleEl) titleEl.textContent = `(${filtered.length}) Projects`;
+
+      HIDDEN = new Set();
+      let filteredData = computeData(filtered);
+      drawPie("#projects-pie-plot", filteredData);
+    });
+  }
 })();
