@@ -22,7 +22,6 @@ let drawPie = (selector, data) => {
   if (svg.empty()) return;
 
   let visible = data.filter(d => !HIDDEN.has(d.label));
-
   let W = 320, H = 320;
   svg.attr("width", W).attr("height", H);
   svg.selectAll("*").remove();
@@ -46,10 +45,19 @@ let drawPie = (selector, data) => {
   slices
     .on("mouseenter", function (e, d) {
       slices.style("opacity", s => (s.data.label === d.data.label ? 1 : 0.35));
-      d3.select(this).attr("stroke-width", 2);
+      d3.select(this)
+        .attr("stroke-width", 2)
+        .transition()
+        .duration(150)
+        .attr("transform", "scale(0.9)");
     })
     .on("mouseleave", function () {
-      slices.style("opacity", 1).attr("stroke-width", 1);
+      slices
+        .transition()
+        .duration(150)
+        .attr("transform", "scale(1)")
+        .attr("stroke-width", 1)
+        .style("opacity", 1);
     });
 
   let legendRoot = d3.select(".legend");
@@ -94,10 +102,10 @@ let drawPie = (selector, data) => {
   let data = computeData(projects);
   drawPie("#projects-pie-plot", data);
 
-  let searchInput = document.getElementById("project-search");
+  let searchInput = document.querySelector('input[type="search"]') || document.getElementById("project-search");
   if (searchInput) {
     searchInput.addEventListener("input", e => {
-      let term = e.target.value.toLowerCase();
+      let term = e.target.value.toLowerCase().trim();
       let filtered = projects.filter(p =>
         (p.title && p.title.toLowerCase().includes(term)) ||
         (p.description && p.description.toLowerCase().includes(term)) ||
@@ -105,12 +113,21 @@ let drawPie = (selector, data) => {
       );
 
       renderProjects(filtered, container, "h2");
-
       if (titleEl) titleEl.textContent = `(${filtered.length}) Projects`;
 
       HIDDEN = new Set();
       let filteredData = computeData(filtered);
       drawPie("#projects-pie-plot", filteredData);
+    });
+
+    searchInput.addEventListener("keydown", e => {
+      if (e.key === "Escape") {
+        searchInput.value = "";
+        renderProjects(projects, container, "h2");
+        if (titleEl) titleEl.textContent = `(${projects.length}) Projects`;
+        HIDDEN = new Set();
+        drawPie("#projects-pie-plot", computeData(projects));
+      }
     });
   }
 })();
