@@ -1,42 +1,67 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import { fetchJSON, renderProjects } from "/portfolio/global.js";
 
-function drawPie(selector, data) {
-  const svg = d3.select(selector);
+let HIDDEN = new Set();
+
+let drawPie = (selector, data) => {
+  let svg = d3.select(selector);
   if (svg.empty()) return;
 
-  svg.attr("width", 320).attr("height", 320);
+  let visible = data.filter(d => !HIDDEN.has(d.label));
+  let W = 320, H = 320;
+  svg.attr("width", W).attr("height", H);
   svg.selectAll("*").remove();
 
-  const pie = d3.pie().value(d => d.value).sort(null);
-  const arc = d3.arc().innerRadius(10).outerRadius(50);
-  const arcs = pie(data);
+  let pie = d3.pie().value(d => d.value).sort(null);
+  let arc = d3.arc().innerRadius(10).outerRadius(50);
+  let arcs = pie(visible);
 
-  const colors = d3.scaleOrdinal(d3.schemeTableau10).domain(data.map(d => d.label));
+  let colors = d3.scaleOrdinal(d3.schemeTableau10).domain(data.map(d => d.label));
 
-  svg.selectAll("path.slice")
-    .data(arcs)
+  let slices = svg.selectAll("path.slice")
+    .data(arcs, d => d.data.label)
     .join("path")
       .attr("class", "slice")
       .attr("d", arc)
       .attr("fill", d => colors(d.data.label))
       .attr("stroke", "white")
-      .attr("stroke-width", 1);
+      .attr("stroke-width", 1)
+      .style("transition", "opacity 150ms ease, transform 150ms ease");
 
-  const legendRoot = d3.select(".legend");
+  slices
+    .on("mouseenter", function (e, d) {
+      slices.style("opacity", s => (s.data.label === d.data.label ? 1 : 0.35));
+      d3.select(this).attr("stroke-width", 2);
+    })
+    .on("mouseleave", function () {
+      slices.style("opacity", 1).attr("stroke-width", 1);
+    });
+
+  let legendRoot = d3.select(".legend");
   if (!legendRoot.empty()) {
-    const colorsByIndex = d3.scaleOrdinal(d3.schemeTableau10);
-    legendRoot.selectAll("*").remove();
-    legendRoot.selectAll("li")
+    let li = legendRoot.selectAll("li")
       .data(data, d => d.label)
       .join("li")
-        .attr("style", (d, i) => `--color:${colorsByIndex(i)}`)
+        .attr("style", (d, i) => `--color:${d3.schemeTableau10[i % 10]}`)
+        .classed("is-hidden", d => HIDDEN.has(d.label))
         .html(d => `<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`);
+
+    li.on("mouseenter", (e, d) => {
+        slices.style("opacity", s => (s.data.label === d.label ? 1 : 0.35));
+      })
+      .on("mouseleave", () => {
+        slices.style("opacity", 1);
+      })
+      .on("click", (e, d) => {
+        if (HIDDEN.has(d.label)) HIDDEN.delete(d.label);
+        else HIDDEN.add(d.label);
+        drawPie(selector, data);
+      });
   }
-}
+};
 
 (async () => {
-  const container = document.getElementById("projects-list");
+  let container = document.getElementById("projects-list");
   if (!container) return;
 
   let projects = [];
@@ -50,24 +75,23 @@ function drawPie(selector, data) {
     renderProjects(projects, container, "h2");
   } catch (_) {}
 
-  const titleEl = document.querySelector("main h1") || document.querySelector("h1");
+  let titleEl = document.querySelector("main h1") || document.querySelector("h1");
   if (titleEl) titleEl.textContent = `(${projects.length}) Projects`;
 
   let data = [];
   if (projects.length) {
-    const byYear = new Map();
-    for (const p of projects) {
-      const y = p?.year ?? "Unknown";
+    let byYear = new Map();
+    for (let p of projects) {
+      let y = p?.year ?? "Unknown";
       byYear.set(y, (byYear.get(y) || 0) + 1);
     }
-    const entries = Array.from(byYear.entries()).sort((a, b) => {
-      const ax = isNaN(+a[0]) ? Infinity : +a[0];
-      const bx = isNaN(+b[0]) ? Infinity : +b[0];
+    let entries = Array.from(byYear.entries()).sort((a, b) => {
+      let ax = isNaN(+a[0]) ? Infinity : +a[0];
+      let bx = isNaN(+b[0]) ? Infinity : +b[0];
       return d3.ascending(ax, bx);
     });
     data = entries.map(([label, value]) => ({ label, value }));
   }
-
   if (!data.length) {
     data = [
       { label: "sample a", value: 3 },
