@@ -424,4 +424,59 @@ h2 {
   margin: 0;
 }
 
+.gridlines line {
+  stroke: #ccc;
+  stroke-opacity: 0.5;
+}
 
+/* Generic info <dl> layout for tooltips / info panels */
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 0.75rem;
+  margin: 0;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  background-color: #ffffff;
+  color: #222;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+dl.info dt {
+  font-weight: 600;
+  opacity: 0.7;
+}
+
+dl.info dd {
+  margin: 0;
+}
+
+/* Tooltip positioning */
+.tooltip {
+  position: fixed;
+  top: 1em;
+  left: 1em;
+  z-index: 10;
+}
+
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+circle.selected {
+  fill: #ff6b6b;
+}
