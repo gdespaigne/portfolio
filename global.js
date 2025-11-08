@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
     { href: "projects/", title: "Projects" },
     { href: "resume/",   title: "Resume" },
     { href: "contact/",  title: "Contact" },
+    { href: "meta/", title: "Meta" },
     { href: "https://github.com/gdespaigne", title: "GitHub" }
   ];
 
