@@ -392,3 +392,33 @@ h2 {
   font: 14px Times, serif;
   margin-block: 1em;
 }
+
+/* Meta stats layout */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-family: inherit;
+}
+
+.stats dt,
+.stats dd {
+  display: inline;
+  margin: 0;
+  padding: 0;
+}
+
+.stats dt {
+  font-weight: 600;
+  color: #333;
+  margin-right: 0.3rem;
+}
+
+.stats dd {
+  color: crimson;
+  margin-right: 1.5rem;
+}
