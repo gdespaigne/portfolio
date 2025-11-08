@@ -395,30 +395,33 @@ h2 {
 
 /* Meta stats layout */
 .stats {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: auto;
   gap: 2rem;
-  background-color: rgba(0, 0, 0, 0.05);
-  padding: 1rem 2rem;
-  border-radius: 12px;
-  font-family: inherit;
+  margin: 2rem auto;
+  max-width: 800px;
+  text-align: center;
 }
 
-.stats dt,
-.stats dd {
-  display: inline;
-  margin: 0;
-  padding: 0;
+.stats dt:nth-of-type(n) {
+  grid-row: 1;
+}
+.stats dd:nth-of-type(n) {
+  grid-row: 2;
 }
 
 .stats dt {
   font-weight: 600;
-  color: #333;
-  margin-right: 0.3rem;
+  color: #222;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
 }
-
 .stats dd {
   color: crimson;
-  margin-right: 1.5rem;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin: 0;
 }
+
+

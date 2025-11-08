@@ -63,27 +63,27 @@ function formatHourFrac(hourFrac) {
 function renderCommitInfo(data, commits) {
   const dl = d3.select('#stats').append('dl').attr('class', 'stats');
 
-  dl.append('dt').html('Total <abbr title="Lines of code">LOC</abbr>');
+  dl.append('dt').html('Total LOC');
   dl.append('dd').text(data.length);
 
-  dl.append('dt').text('Total commits');
+  dl.append('dt').text('Total Commits');
   dl.append('dd').text(commits.length);
 
   const fileSet = new Set(data.map((d) => d.file));
   const numFiles = fileSet.size;
 
-  dl.append('dt').text('Files in codebase');
+  dl.append('dt').text('Files in Codebase');
   dl.append('dd').text(numFiles);
 
   const avgFileLength = numFiles ? data.length / numFiles : 0;
-  dl.append('dt').text('Average file length (LOC)');
+  dl.append('dt').text('Avg. Line of Code Length');
   dl.append('dd').text(avgFileLength.toFixed(1));
 
   const avgHourFrac = d3.mean(commits, (c) => c.hourFrac);
-  dl.append('dt').text('Average time of day worked');
+  dl.append('dt').text('Avg. TOD Worked');
   dl.append('dd').text(formatHourFrac(avgHourFrac));
 
-  const weekdayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+  const weekdayNames = ['Sun', 'Mon', 'Tues', 'Wed', 'Thur', 'Fri', 'Sat'];
   const dayCounts = new Array(7).fill(0);
 
   commits.forEach((c) => {
@@ -103,7 +103,7 @@ function renderCommitInfo(data, commits) {
   const mostActiveDay =
     dayCounts.every((count) => count === 0) ? 'N/A' : weekdayNames[maxDayIndex];
 
-  dl.append('dt').text('Most active day of week');
+  dl.append('dt').text('Most Active Day of Week Worked');
   dl.append('dd').text(mostActiveDay);
 }
 
