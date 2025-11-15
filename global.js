@@ -98,18 +98,10 @@ export function renderProjects(projects, containerElement, headingLevel = "h2") 
 
     if (project.url) {
       linksHTML += `
-        <p><a href="${project.url}" target="_blank" rel="noopener noreferrer">
-          View project
-        </a></p>
-      `;
-    }
-
-    if (project.data_url) {
-      linksHTML += `
-        <p><a href="${project.data_url}" target="_blank" rel="noopener noreferrer">
-          Dataset / JSON
-        </a></p>
-      `;
+      <p><a class="project-url" href="${project.url}" target="_blank" rel="noopener noreferrer">
+        View project
+      </a></p>
+    `;
     }
 
     article.innerHTML = `
