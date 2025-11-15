@@ -20,7 +20,7 @@
 	{
 		"title": "Bike Watching Project",
 		"year": "2025",
-		"image": "images/bikewatching.png",
+		"image": "https://github.com/gdespaigne/portfolio/blob/main/images/bikewatching.png",
 		"url": "https://gdespaigne.github.io/bikewatching/",
 		"description": "Interactive webpage for analyzing bike traffic in Boston and Cambridge throughout the day."
 	},
