@@ -483,6 +483,7 @@ circle.selected {
 
 .project-url {
   color: crimson;
+  text-align: center;
   font-weight: bold;
   border: 1px solid crimson;
   padding: 4px 8px;
