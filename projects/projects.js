@@ -43,6 +43,7 @@ let applyFilters = () => {
 
   let dataNow = computeData(filtered);
   drawPie("#projects-pie-plot", dataNow, allYears(BASE));
+  
 };
 
 let drawPie = (selector, dataNow, yearsDomain) => {

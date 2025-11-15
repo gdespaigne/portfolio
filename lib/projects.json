@@ -18,6 +18,14 @@
 		"description": "Eligendi tenetur quae quos recusandae est. Cumque, voluptatem. Quo nihil dignissimos molestiae explicabo praesentium aspernatur debitis, illo rerum possimus quam ducimus earum nulla officiis maiores itaque repellat corporis soluta labore?"
 	},
 	{
+		"title": "Bike Watching Project",
+		"year": "2025",
+		"image": "images/bikewatching.png",
+		"url": "https://gdespaigne.github.io/bikewatching/",
+		"data_url": "https://gdespaigne.github.io/bikewatching/",
+		"description": "Interactive webpage for analyzing bike traffic in Boston and Cambridge throughout the day."
+	},
+	{
 		"title": "Video Game Analysis",
 		"year": "2024",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
@@ -34,12 +42,6 @@
 		"year": "2024",
 		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
 		"description": "Est neque, velit nam rerum error odio voluptates voluptatem magnam laboriosam ad? Doloribus, id et itaque unde porro totam ullam quaerat blanditiis odit animi eveniet aut, voluptate velit iure odio."
-	},
-	{
-		"title": "Iste ipsam magni fuga!",
-		"year": "2023",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Velit omnis suscipit nemo quia? Iste maiores numquam labore quia nemo eveniet odit, modi magnam? Architecto officia sint est. Architecto iste minima consequuntur explicabo illo error sed at dolore nostrum!"
 	},
 	{
 		"title": "Ipsum, aperiam magni? Nobis.",

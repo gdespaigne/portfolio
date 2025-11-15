@@ -99,6 +99,7 @@ export function renderProjects(projects, containerElement, headingLevel = "h2") 
       <div class="project-desc-wrap">
         <div class="project-year">${project.year ?? ""}</div>
         <p>${project.description}</p>
+        ${extraLinks}
       </div>
     `;
     containerElement.appendChild(article);
