@@ -87,24 +87,45 @@ export async function fetchJSON(url) {
   }
 }
 
-// render projects
 export function renderProjects(projects, containerElement, headingLevel = "h2") {
   if (!containerElement) return;
   containerElement.innerHTML = "";
+
   projects.forEach(project => {
     const article = document.createElement("article");
+
+    let linksHTML = "";
+
+    if (project.url) {
+      linksHTML += `
+        <p><a href="${project.url}" target="_blank" rel="noopener noreferrer">
+          View project
+        </a></p>
+      `;
+    }
+
+    if (project.data_url) {
+      linksHTML += `
+        <p><a href="${project.data_url}" target="_blank" rel="noopener noreferrer">
+          Dataset / JSON
+        </a></p>
+      `;
+    }
+
     article.innerHTML = `
       <${headingLevel}>${project.title}</${headingLevel}>
       <img src="${project.image}" alt="${project.title}">
       <div class="project-desc-wrap">
         <div class="project-year">${project.year ?? ""}</div>
         <p>${project.description}</p>
-        ${extraLinks}
+        ${linksHTML}
       </div>
     `;
+
     containerElement.appendChild(article);
   });
 }
+
 
 export async function fetchGitHubData(username) {
   return await fetchJSON(`https://api.github.com/users/${username}`);
