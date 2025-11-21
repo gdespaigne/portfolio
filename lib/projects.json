@@ -2,16 +2,16 @@
 	{
 		"title": "NYPD Persuasive Visualizations",
 		"year": "2025",
-		"image": "../images/nypd-vis.png",
+		"image": "/portfolio/images/nypd-vis.png",
 		"url": "https://gdespaigne.github.io/NYPD-Persuasive-Visualizations/",
-		"repo": "https://github.com/gdespaigne/NYPD-Persuasive-Visualizations",
 		"description": "A study in persuasive data visualization using NYPD civilian complaint records. I built two stacked bar charts with identical underlying data but divergent rhetorical goals: one designed to provoke, the other to neutralize. Each visualization was scored on an earnest-to-deceptive scale based on decisions around color psychology, axis transparency, data filtering, and title framing."
 	},
 	{
-		"title": "Endometriosis Best Fish Project",
+		"title": "Best Fish Selection for Endometriosis",
 		"year": "2025",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Est, reiciendis aspernatur debitis maxime et itaque animi sit quod quo, tempore incidunt tempora dignissimos exercitationem enim numquam quam quaerat optio laborum ut unde hic delectus laboriosam? Quasi, cupiditate corporis."
+		"image": "/portfolio/images/endofish.png",
+		"url": "https://github.com/gdespaigne/Endometriosis-Best-Fish-Project",
+		"description": "A data visualization exploring which seafood choices are best for managing endometriosis, a chronic inflammatory condition. I developed a custom Anti-Inflammation Index (AII) to score fish products based on nutritional factors, revealing that fresh fish offers the strongest anti-inflammatory benefits while processed options tend to be more harmful."
 	},
 	{
 		"title": "NYC Taxi Spark Project",
