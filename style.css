@@ -493,3 +493,21 @@ circle.selected {
   background: crimson;
   color: white;
 }
+
+/* Slider CSS */
+.time-filter {
+  display: flex;
+  flex: 1;
+  align-items: baseline;
+}
+
+.time-filter label {
+  display: flex;
+  align-items: baseline;
+  gap: 1em;
+  width: 100%;
+}
+
+.time-filter time {
+  margin-left: auto;
+}
