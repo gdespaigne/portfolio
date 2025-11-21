@@ -139,6 +139,20 @@ h2 {
   max-width: 95ch; 
   margin-inline: auto; 
 }
+
+.resume a {
+  color: crimson;
+  font-weight: bold;
+  border: 1px solid crimson;
+  padding: 5px 5px;
+  background-color: white;
+}
+
+.resume a:hover{
+  color: white;
+  background: crimson;
+}
+
 .resume__header h1 { 
   margin-block-start: 0;
   margin-block-end: 0.5em; 
