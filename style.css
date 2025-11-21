@@ -120,13 +120,14 @@ form button {
 h1 {
   font: Times;
   color: crimson;
-  font-size: 400%;  
-  line-height: 1.1;
+  font-size: 300%;  
+  line-height: 1;
   text-wrap: balance;
+  padding-bottom: -0.5rem;
 }
 h2 {
   font: times;
-  line-height: 1.1;
+  line-height: 1;
   text-wrap: balance;
 }
 
@@ -313,14 +314,15 @@ h2 {
 
 .github-grid .stat dt {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.2rem;
   margin-bottom: 0.25rem;
   color: #333;
 }
 
 .github-grid .stat dd {
   margin: 0;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   color: crimson;
 }
 
@@ -414,12 +416,12 @@ h2 {
 .stats dt {
   font-weight: 600;
   color: #222;
-  font-size: 1.1rem;
-  margin-bottom: 0.3rem;
+  font-size: 13.5pt;
+  margin-bottom: -0.5rem;
 }
 .stats dd {
   color: crimson;
-  font-size: 1.6rem;
+  font-size: 18pt;
   font-weight: 700;
   margin: 0;
 }
@@ -625,4 +627,31 @@ circle {
   top: 0;
   height: 100vh;
   overflow-y: auto;
+}
+
+.intro-content {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.intro-text {
+  flex: 1;
+}
+
+.intro-photo {
+  width: 335px;
+  height: 350px;
+  object-fit: cover;
+  border-radius: 60%;
+}
+
+@media (max-width: 768px) {
+  .intro-content {
+    flex-direction: column;
+  }
+  
+  .intro-photo {
+    order: -1;
+  }
 }
