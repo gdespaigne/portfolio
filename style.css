@@ -559,7 +559,7 @@ circle {
   align-items: start;
   align-content: start;
   gap: 0.15em;
-  padding-top: 0.6em;
+  padding-top: 1.0em;
   margin-left: 0;
 }
 
@@ -574,6 +574,7 @@ circle {
   position: relative;
   display: flex;
   gap: 1.5rem;
+  padding-bottom: 30vh;
 }
 
 #scrolly-1 > * {
@@ -582,12 +583,14 @@ circle {
 
 #scatter-story {
   position: relative;
+  flex: 1.5;
 }
 
 #scatter-plot {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 50vh;
+  flex: 2.5;
 }
 
 .step {
@@ -620,12 +623,14 @@ circle {
 
 #files-story {
   position: relative;
+  flex: 1.5;
 }
 
 #files-plot {
   position: sticky;
   top: 0;
   height: 100vh;
+  flex: 2.5;
   overflow-y: auto;
 }
 
