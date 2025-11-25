@@ -58,7 +58,7 @@ let drawPie = (selector, dataNow, yearsDomain) => {
   let arc = d3.arc().innerRadius(10).outerRadius(50);
   let arcs = pie(dataNow);
 
-  let colors = d3.scaleOrdinal(d3.schemeTableau10).domain(yearsDomain);
+  let colors = d3.scaleOrdinal(d3.schemePastel1).domain(yearsDomain);
 
   let slices = svg.selectAll("path.slice")
     .data(arcs, d => d.data.label)
