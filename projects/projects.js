@@ -96,7 +96,7 @@ let drawPie = (selector, dataNow, yearsDomain) => {
     let li = legendRoot.selectAll("li")
       .data(yearsDomain, d => d)
       .join("li")
-        .attr("style", (d, i) => `--color:${d3.schemeTableau10[i % 10]}`)
+        .attr("style", (d, i) => `--color:${d3.schemePastel1[i % 10]}`)
         .classed("is-hidden", d => SELECTED_YEARS.size > 0 && !SELECTED_YEARS.has(d))
         .html(d => `<span class="swatch"></span> ${d} <em>(${currentMap.get(d) ?? 0})</em>`)
         .on("mouseenter", (e, d) => {
